@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Celebration — Premium Event Management</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!-- SVG Icon Sprites -->
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+    <symbol id="icon-stars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/>
+    </symbol>
+    <symbol id="icon-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+    </symbol>
+    <symbol id="icon-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+    </symbol>
+    <symbol id="icon-music" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>
+    </symbol>
+    <symbol id="icon-camera" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/>
+    </symbol>
+    <symbol id="icon-flower" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <circle cx="12" cy="12" r="3"/><path d="M12 2a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4z"/><path d="M12 14a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4z"/><path d="M2 12a4 4 0 0 1 4-4 4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4z"/><path d="M14 12a4 4 0 0 1 4-4 4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4z"/>
+    </symbol>
+    <symbol id="icon-diamond" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M6 3h12l4 6-10 13L2 9z"/><path d="M2 9h20"/>
+    </symbol>
+    <symbol id="icon-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+    </symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+      <polyline points="20 6 9 17 4 12"/>
+    </symbol>
+    <symbol id="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+    </symbol>
+    <symbol id="icon-quote" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1zm12 0c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/>
+    </symbol>
+  </svg>
+</head>
+<body>
+
+  <!-- Particle Canvas -->
+  <canvas id="particle-canvas"></canvas>
+
+  <!-- Ambient Blobs -->
+  <div class="ambient-blob blob-1"></div>
+  <div class="ambient-blob blob-2"></div>
+  <div class="ambient-blob blob-3"></div>
+  <div class="ambient-blob blob-4"></div>
+
+  <!-- ========== NAVIGATION ========== -->
+  <header class="nav-header" id="main-nav">
+    <div class="container nav-container">
+      <a href="#" class="logo">
+        <svg width="22" height="22"><use href="#icon-diamond"/></svg>
+        Celebration
+      </a>
+      <nav class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#about">About</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#contact" class="btn-nav">Get a Quote</a>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="#services">Services</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#about">About</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#contact">Get a Quote</a>
+    </div>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero" id="hero">
+    <div class="container hero-inner">
+      <div class="hero-badge">
+        <svg width="14" height="14"><use href="#icon-stars"/></svg>
+        Premium Event Management
+      </div>
+      <h1 class="hero-title">
+        We Craft<br/>
+        <span class="gradient-text">Unforgettable</span><br/>
+        Celebrations
+      </h1>
+      <p class="hero-sub">
+        From intimate gatherings to grand galas, our team of luxury event specialists transforms your vision into a flawlessly orchestrated experience.
+      </p>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn-primary">
+          Start Planning
+          <svg width="16" height="16"><use href="#icon-arrow-right"/></svg>
+        </a>
+        <a href="#portfolio" class="btn-ghost">View Our Work</a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-avatars">
+          <img src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=50&h=50&fit=crop" alt="Client" />
+          <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=50&h=50&fit=crop" alt="Client" />
+          <img src="https://images.pexels.com/photos/1181519/pexels-photo-1181519.jpeg?auto=compress&cs=tinysrgb&w=50&h=50&fit=crop" alt="Client" />
+          <img src="https://images.pexels.com/photos/1587009/pexels-photo-1587009.jpeg?auto=compress&cs=tinysrgb&w=50&h=50&fit=crop" alt="Client" />
+        </div>
+        <span class="trust-text">Trusted by <strong>500+</strong> happy couples &amp; clients</span>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ========== STATS ========== -->
+  <section class="stats-section" id="stats">
+    <div class="container stats-grid">
+      <div class="stat-item glass-card">
+        <span class="stat-number" data-target="500">0</span>
+        <span class="stat-suffix">+</span>
+        <p class="stat-label">Events Delivered</p>
+      </div>
+      <div class="stat-item glass-card">
+        <span class="stat-number" data-target="98">0</span>
+        <span class="stat-suffix">%</span>
+        <p class="stat-label">Client Satisfaction</p>
+      </div>
+      <div class="stat-item glass-card">
+        <span class="stat-number" data-target="10">0</span>
+        <span class="stat-suffix">+</span>
+        <p class="stat-label">Years Experience</p>
+      </div>
+      <div class="stat-item glass-card">
+        <span class="stat-number" data-target="100">0</span>
+        <span class="stat-suffix">+</span>
+        <p class="stat-label">Trusted Vendors</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SERVICES ========== -->
+  <section class="services-section" id="services">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">What We Do</span>
+        <h2 class="section-title">Tailored Event <span class="gradient-text">Services</span></h2>
+        <p class="section-sub">Every detail meticulously planned, every moment beautifully executed.</p>
+      </div>
+      <div class="services-grid">
+        <div class="glass-card service-card">
+          <div class="service-icon">
+            <svg width="28" height="28"><use href="#icon-heart"/></svg>
+          </div>
+          <h3>Weddings &amp; Ceremonies</h3>
+          <p>Your perfect day, crafted with love. We handle everything from venue scouting to the final farewell, ensuring a seamless and stunning celebration of love.</p>
+          <a href="#contact" class="service-link">Learn More <svg width="14" height="14"><use href="#icon-arrow-right"/></svg></a>
+        </div>
+        <div class="glass-card service-card">
+          <div class="service-icon">
+            <svg width="28" height="28"><use href="#icon-stars"/></svg>
+          </div>
+          <h3>Corporate Galas</h3>
+          <p>Elevate your brand with world-class corporate events. Conferences, award nights, and product launches designed to impress, engage, and inspire.</p>
+          <a href="#contact" class="service-link">Learn More <svg width="14" height="14"><use href="#icon-arrow-right"/></svg></a>
+        </div>
+        <div class="glass-card service-card">
+          <div class="service-icon">
+            <svg width="28" height="28"><use href="#icon-flower"/></svg>
+          </div>
+          <h3>Floral &amp; Decor Design</h3>
+          <p>Breathtaking florals and bespoke decor installations that transform any space into a visual masterpiece tailored to your unique aesthetic.</p>
+          <a href="#contact" class="service-link">Learn More <svg width="14" height="14"><use href="#icon-arrow-right"/></svg></a>
+        </div>
+        <div class="glass-card service-card">
+          <div class="service-icon">
+            <svg width="28" height="28"><use href="#icon-music"/></svg>
+          </div>
+          <h3>Entertainment &amp; Music</h3>
+          <p>Curated live bands, DJs, performers, and immersive sound experiences that keep your guests captivated from first song to last dance.</p>
+          <a href="#contact" class="service-link">Learn More <svg width="14" height="14"><use href="#icon-arrow-right"/></svg></a>
+        </div>
+        <div class="glass-card service-card">
+          <div class="service-icon">
+            <svg width="28" height="28"><use href="#icon-camera"/></svg>
+          </div>
+          <h3>Photography &amp; Film</h3>
+          <p>Award-winning photographers and cinematographers who capture every fleeting emotion, turning your memories into timeless art.</p>
+          <a href="#contact" class="service-link">Learn More <svg width="14" height="14"><use href="#icon-arrow-right"/></svg></a>
+        </div>
+        <div class="glass-card service-card">
+          <div class="service-icon">
+            <svg width="28" height="28"><use href="#icon-calendar"/></svg>
+          </div>
+          <h3>Full-Scale Planning</h3>
+          <p>From concept to conclusion, our full-service planning package covers vendor management, logistics, timelines, and on-day coordination.</p>
+          <a href="#contact" class="service-link">Learn More <svg width="14" height="14"><use href="#icon-arrow-right"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PORTFOLIO ========== -->
+  <section class="portfolio-section" id="portfolio">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Our Work</span>
+        <h2 class="section-title">A Glimpse of Our <span class="gradient-text">Finest Events</span></h2>
+        <p class="section-sub">Each event is a unique story. Here are some of our favorites.</p>
+      </div>
+      <div class="portfolio-filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="wedding">Weddings</button>
+        <button class="filter-btn" data-filter="corporate">Corporate</button>
+        <button class="filter-btn" data-filter="gala">Galas</button>
+        <button class="filter-btn" data-filter="birthday">Birthdays</button>
+      </div>
+      <div class="portfolio-grid">
+        <div class="portfolio-item" data-category="wedding">
+          <img src="https://images.pexels.com/photos/1488315/pexels-photo-1488315.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="Garden Wedding" loading="lazy" />
+          <div class="portfolio-overlay">
+            <h4>Garden Elegance Wedding</h4>
+            <p>Botanical Gardens, Spring 2024</p>
+          </div>
+        </div>
+        <div class="portfolio-item portfolio-item--wide" data-category="corporate">
+          <img src="https://images.pexels.com/photos/2747449/pexels-photo-2747449.jpeg?auto=compress&cs=tinysrgb&w=900&h=400&fit=crop" alt="Corporate Gala" loading="lazy" />
+          <div class="portfolio-overlay">
+            <h4>Summit Tech Annual Gala</h4>
+            <p>Grand Ballroom, Winter 2024</p>
+          </div>
+        </div>
+        <div class="portfolio-item" data-category="gala">
+          <img src="https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="Gala Night" loading="lazy" />
+          <div class="portfolio-overlay">
+            <h4>Charity Gala Evening</h4>
+            <p>Skyline Terrace, Fall 2024</p>
+          </div>
+        </div>
+        <div class="portfolio-item" data-category="birthday">
+          <img src="https://images.pexels.com/photos/1543793/pexels-photo-1543793.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="Luxury Birthday" loading="lazy" />
+          <div class="portfolio-overlay">
+            <h4>Luxury 40th Birthday</h4>
+            <p>Private Villa, Summer 2024</p>
+          </div>
+        </div>
+        <div class="portfolio-item" data-category="wedding">
+          <img src="https://images.pexels.com/photos/931177/pexels-photo-931177.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="Beach Wedding" loading="lazy" />
+          <div class="portfolio-overlay">
+            <h4>Oceanfront Ceremony</h4>
+            <p>Malibu Beach, Summer 2024</p>
+          </div>
+        </div>
+        <div class="portfolio-item portfolio-item--wide" data-category="corporate">
+          <img src="https://images.pexels.com/photos/2608517/pexels-photo-2608517.jpeg?auto=compress&cs=tinysrgb&w=900&h=400&fit=crop" alt="Conference" loading="lazy" />
+          <div class="portfolio-overlay">
+            <h4>Leadership Summit 2024</h4>
+            <p>Convention Center, Spring 2024</p>
+          </div>
+        </div>
+        <div class="portfolio-item" data-category="gala">
+          <img src="https://images.pexels.com/photos/787961/pexels-photo-787961.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="Award Night" loading="lazy" />
+          <div class="portfolio-overlay">
+            <h4>Annual Awards Night</h4>
+            <p>Heritage Hall, Winter 2024</p>
+          </div>
+        </div>
+        <div class="portfolio-item" data-category="birthday">
+          <img src="https://images.pexels.com/photos/1729931/pexels-photo-1729931.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="Kids Party" loading="lazy" />
+          <div class="portfolio-overlay">
+            <h4>Enchanted Garden Party</h4>
+            <p>Private Estate, Spring 2024</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox Modal -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close">
+      <svg width="24" height="24"><use href="#icon-close"/></svg>
+    </button>
+    <div class="lightbox-inner">
+      <img class="lightbox-img" id="lightbox-img" src="" alt="" />
+      <div class="lightbox-info">
+        <h3 id="lightbox-title"></h3>
+        <p id="lightbox-desc"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== ABOUT ========== -->
+  <section class="about-section" id="about">
+    <div class="container about-grid">
+      <div class="about-images">
+        <img class="about-img about-img--main" src="https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=600&h=700&fit=crop" alt="Our team" loading="lazy" />
+        <div class="about-img-badge glass-card">
+          <svg width="20" height="20"><use href="#icon-stars"/></svg>
+          <span>Award-Winning Studio</span>
+        </div>
+      </div>
+      <div class="about-content">
+        <span class="section-tag">About Us</span>
+        <h2 class="section-title">The Art of Creating <span class="gradient-text">Perfect Moments</span></h2>
+        <p>Founded in 2014, Celebration has grown from a boutique wedding studio to a full-service luxury event management firm trusted by Fortune 500 companies, celebrities, and discerning families across the country.</p>
+        <p>Our passionate team of designers, planners, and coordinators brings decades of combined experience and an obsessive attention to detail to every event we touch.</p>
+        <ul class="about-list">
+          <li><svg width="16" height="16"><use href="#icon-check"/></svg> Dedicated personal event concierge</li>
+          <li><svg width="16" height="16"><use href="#icon-check"/></svg> Curated network of 100+ premium vendors</li>
+          <li><svg width="16" height="16"><use href="#icon-check"/></svg> On-site coordination from setup to teardown</li>
+          <li><svg width="16" height="16"><use href="#icon-check"/></svg> Full liability insurance &amp; contracts</li>
+        </ul>
+        <a href="#contact" class="btn-primary">Work With Us <svg width="16" height="16"><use href="#icon-arrow-right"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TESTIMONIALS ========== -->
+  <section class="testimonials-section" id="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Reviews</span>
+        <h2 class="section-title">Words From Our <span class="gradient-text">Beloved Clients</span></h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="glass-card testimonial-card">
+          <div class="testimonial-quote"><svg width="32" height="32"><use href="#icon-quote"/></svg></div>
+          <p>"Celebration turned our vision into something beyond what we could have ever imagined. Our wedding was absolutely magical. Every single detail was perfect."</p>
+          <div class="testimonial-author">
+            <img src="https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=60&h=60&fit=crop" alt="Sarah M." />
+            <div>
+              <strong>Sarah &amp; Michael</strong>
+              <span>Wedding, June 2024</span>
+            </div>
+          </div>
+        </div>
+        <div class="glass-card testimonial-card testimonial-card--featured">
+          <div class="testimonial-quote"><svg width="32" height="32"><use href="#icon-quote"/></svg></div>
+          <p>"Our annual gala has never looked or felt so prestigious. The Celebration team handled 500 guests seamlessly. Our board was blown away. We're already booking next year."</p>
+          <div class="testimonial-author">
+            <img src="https://images.pexels.com/photos/1181519/pexels-photo-1181519.jpeg?auto=compress&cs=tinysrgb&w=60&h=60&fit=crop" alt="Jennifer L." />
+            <div>
+              <strong>Jennifer L.</strong>
+              <span>VP Operations, NovaCorp</span>
+            </div>
+          </div>
+        </div>
+        <div class="glass-card testimonial-card">
+          <div class="testimonial-quote"><svg width="32" height="32"><use href="#icon-quote"/></svg></div>
+          <p>"The team's creativity and professionalism is unmatched. My daughter's sweet 16 was the talk of the town. Everything from florals to lighting was simply breathtaking."</p>
+          <div class="testimonial-author">
+            <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=60&h=60&fit=crop" alt="Amanda R." />
+            <div>
+              <strong>Amanda R.</strong>
+              <span>Birthday Party, 2024</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PRICING ========== -->
+  <section class="pricing-section" id="pricing">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Packages</span>
+        <h2 class="section-title">Transparent <span class="gradient-text">Pricing</span></h2>
+        <p class="section-sub">No hidden fees. Every package is fully customizable to your needs.</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="glass-card pricing-card">
+          <h3>Essentials</h3>
+          <div class="price">
+            <span class="currency">$</span>
+            <span class="amount">2,500</span>
+          </div>
+          <p class="price-note">Starting from</p>
+          <ul class="pricing-features">
+            <li><svg width="14" height="14"><use href="#icon-check"/></svg> Initial consultation &amp; planning</li>
+            <li><svg width="14" height="14"><use href="#icon-check"/></svg> Vendor recommendations</li>
+            <li><svg width="14" height="14"><use href="#icon-check"/></svg> Day-of coordination (8 hrs)</li>
+            <li><svg width="14" height="14"><use href="#icon-check"/></svg> Timeline management</li>
+          </ul>
+          <a href="#contact" class="btn-ghost" style="width:100%;text-align:center">Get Started</a>
+        </div>
+        <div class="glass-card pricing-card pricing-card--featured">
+          <div class="pricing-popular">Most Popular</div>
+          <h3>Signature</h3>
+          <div class="price">
+            <span class="currency">$</span>
+            <span class="amount">7,500</span>
+          </div>
+          <p class="price-note">Starting from</p>
+          <ul class="pricing-features">
+            <li><svg width="14" height="14"><use href="#icon-check"/></svg> Everything in Essentials</li>
+            <li><svg width="14" height="14"><use href="#icon-check"/></svg> Floral &amp; decor design</li>
+            <li><svg width="14" height="14"><use href="#icon-check"/></svg> Vendor management</li>
+            <li><svg width="14" height="14"><use href="#icon-check"/></svg> Full-day coordination (16 hrs)</li>
+            <li><svg width="14" height="14"><use href="#icon-check"/></svg> Budget management</li>
+            <li><svg width="14" height="14"><use href="#icon-check"/></svg> Guest communications</li>
+          </ul>
+          <a href="#contact" class="btn-primary" style="width:100%;text-align:center">Get Started</a>
+        </div>
+        <div class="glass-card pricing-card">
+          <h3>Prestige</h3>
+          <div class="price">
+            <span class="currency">$</span>
+            <span class="amount">15,000</span>
+          </div>
+          <p class="price-note">Starting from</p>
+          <ul class="pricing-features">
+            <li><svg width="14" height="14"><use href="#icon-check"/></svg> Everything in Signature</li>
+            <li><svg width="14" height="14"><use href="#icon-check"/></svg> Dedicated concierge team</li>
+            <li><svg width="14" height="14"><use href="#icon-check"/></svg> Photography &amp; film included</li>
+            <li><svg width="14" height="14"><use href="#icon-check"/></svg> Entertainment booking</li>
+            <li><svg width="14" height="14"><use href="#icon-check"/></svg> VIP guest experience</li>
+            <li><svg width="14" height="14"><use href="#icon-check"/></svg> Post-event wrap-up &amp; recap</li>
+          </ul>
+          <a href="#contact" class="btn-ghost" style="width:100%;text-align:center">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTACT ========== -->
+  <section class="contact-section" id="contact">
+    <div class="container contact-grid">
+      <div class="contact-info">
+        <span class="section-tag">Contact Us</span>
+        <h2 class="section-title">Let's Plan Something <span class="gradient-text">Extraordinary</span></h2>
+        <p>Ready to start? Fill out the form and one of our event specialists will reach out within 24 hours to discuss your vision.</p>
+        <div class="contact-details">
+          <div class="contact-detail-item">
+            <svg width="18" height="18"><use href="#icon-calendar"/></svg>
+            <span>Mon–Sat, 9am–7pm EST</span>
+          </div>
+          <div class="contact-detail-item">
+            <svg width="18" height="18"><use href="#icon-heart"/></svg>
+            <span>hello@celebrationevents.co</span>
+          </div>
+          <div class="contact-detail-item">
+            <svg width="18" height="18"><use href="#icon-diamond"/></svg>
+            <span>+1 (800) 555-CELEBRATE</span>
+          </div>
+        </div>
+      </div>
+      <form class="glass-card contact-form" id="contact-form" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Jane Doe" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="jane@example.com" required />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="event-type">Event Type</label>
+            <select id="event-type" name="event-type">
+              <option value="">Select type...</option>
+              <option>Wedding / Ceremony</option>
+              <option>Corporate Gala</option>
+              <option>Birthday Party</option>
+              <option>Anniversary</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="event-date">Estimated Date</label>
+            <input type="date" id="event-date" name="event-date" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="message">Tell Us About Your Vision</label>
+          <textarea id="message" name="message" rows="4" placeholder="Share your dream event details, guest count, venue preferences..."></textarea>
+        </div>
+        <button type="submit" class="btn-primary form-submit">
+          Send Message
+          <svg width="16" height="16"><use href="#icon-arrow-right"/></svg>
+        </button>
+        <div class="form-success" id="form-success">
+          <svg width="20" height="20"><use href="#icon-check"/></svg>
+          Thank you! We'll be in touch within 24 hours.
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="#" class="logo">
+          <svg width="20" height="20"><use href="#icon-diamond"/></svg>
+          Celebration
+        </a>
+        <p>Crafting extraordinary experiences since 2014. Your perfect moment is our greatest achievement.</p>
+      </div>
+      <div class="footer-links">
+        <div>
+          <h4>Services</h4>
+          <a href="#">Weddings</a>
+          <a href="#">Corporate Events</a>
+          <a href="#">Floral Design</a>
+          <a href="#">Photography</a>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <a href="#about">About Us</a>
+          <a href="#portfolio">Portfolio</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <span>© 2024 Celebration Events. All rights reserved.</span>
+        <span>Privacy Policy · Terms of Service</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
